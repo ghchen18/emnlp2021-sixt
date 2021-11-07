@@ -72,7 +72,9 @@ test_SixT_model(){
         --remove-bpe  --decoding-path $resdir --mplm-type ${MPLM} --xlmr-task $task  > $resdir/gen_out
 
     cat $resdir/gen_out | grep -P "^H" | sort -V | cut -f 3-  > $resdir/decoding.txt
-    spm_decode --model=${xlmr_modeldir}/sentencepiece.bpe.model --input_format=piece < $resdir/decoding.txt > $resdir/decoding.detok
+    python scripts/spm_decode.py --model ${xlmr_modeldir}/sentencepiece.bpe.model  \
+        --input_format piece --input $resdir/decoding.txt > $resdir/decoding.detok
+        
     echo "BLEU score for ${src}-2-en is ...."
     cat $resdir/decoding.detok | sacrebleu $raw_reference
 }

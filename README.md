@@ -12,16 +12,16 @@ python -m pip install -e . --user   ## install fairseq toolkit with this repo
 
 ## Step 1: preprocess data
 
-First download the off-the-shelf xlmr-base and xlmr-large models from the [official repo](https://github.com/pytorch/fairseq/blob/main/examples/xlmr/README.md#pre-trained-models). Then download the training/validation/test data from WMT/WAT/CC-align/FLores/Tatoba etc., the detailed urls are in the paper appendix. Suppose all files are placed under a path `dataloc=/path/to/your/raw/data`. Then use the `fairseq` preprocess.py to binarize the dataset: `bash scripts/preprocess.sh`, more details are in the shell script. 
+First download the off-the-shelf xlmr-base and xlmr-large models from the [official repo](https://github.com/pytorch/fairseq/blob/main/examples/xlmr/README.md#pre-trained-models). Then download the training/validation/test data from WMT/WAT/CC-align/FLores/Tatoba etc., the detailed urls are in the paper appendix. Suppose all files are placed under a path `dataloc=/path/to/your/raw/data`. Then use the preprocess.py to binarize the dataset: [`bash scripts/preprocess.sh`](scripts/preprocess.sh), more details are in the shell script. 
 
 
 ## Step 2: Train the SixT model with two-stage training
 
-The proposed SixT model can be trained with the processed dataset. `bash scripts/run.sh` to train SixT model in two training stages. More details are in the shell script.
+The proposed SixT model can be trained with the processed dataset. [`bash scripts/run.sh`](scripts/run.sh) to train SixT model in two training stages. More details are in the shell script.
 
 ## Step 3: Test the SixT model in the testsets
 
-After the model is trained, you can directly test it in a zero-shot manner. The testsets are also needed to be binarized with the `preprocess.sh` script. See more in `scripts/run.sh`. 
+After the model is trained, you can directly test it in a zero-shot manner. The testsets are also needed to be binarized with the `preprocess.sh` script. See more in [`scripts/run.sh`](scripts/run.sh). 
 
 
 ## Citation
